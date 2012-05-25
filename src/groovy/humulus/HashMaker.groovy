@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory
  */
 public class HashMaker {
 
-    static Integer passwordRounds = 12;
+    static Integer passwordRounds = 10; // default of jBcrypt
     
 	/**
 	 * Use Bcrypt to create a hashed string from a given text.
