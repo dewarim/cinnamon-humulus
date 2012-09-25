@@ -71,19 +71,7 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
             //test connection
             EnvironmentHolder.setEnvironment(env)
             def ds = getDataSourceForEnv(null)
-            log.debug("datasource: ${ds.dump()}")
-
-            try {
-                def con = ds.getConnection()
-                log.debug("connected to $con")
-                session.setAttribute('environment', env)
-                session.setAttribute('repositoryName', env.dbName)
-
-                log.debug('Environment change complete.')
-            } catch (e) {
-                log.debug("error: ", e)
-                throw new RuntimeException("Unable to connect to database", e)
-            }
+            establishConnection(ds, session, env)
 
         }
         else {
@@ -105,15 +93,43 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
                 log.debug("connected to: ${con}")
 
             }
+//            else if (request.getParameter('ticket')){
+//                def ticket = request.getParameter('ticket')
+//                log.debug("ticket: $ticket")
+//                Session cinnamonSession  
+//            }
             else {
                 /*
-                * we have not got a session, which means that our EnvironmentHolder is most
+                 * We have not got a session, which means that our EnvironmentHolder is most
                  * likely invalid.
+                 * We will try to establish a database connection anyway, since the login logo
+                 * (and perhaps other resources) may be loaded without a valid user account / session.
                  */
                 log.warn("invalid EnvironmentHolder: " + EnvironmentHolder.getEnvironment()?.id)
+                def ds = getDataSourceForEnv(null)
+                log.debug("will use first repository in list.")
+                // TODO: try to determine environment from request.host attribute, if possible.
+                // for example: demo.cinnamon4u.de would look for repository demo.
+                def env = Environment.list()[0]
+                establishConnection(ds, session, env)
             }
         }
         chain.doFilter(request, response)
+    }
+
+    private void establishConnection(ds, session, env) {
+        log.debug("datasource: ${ds.dump()}")
+
+        try {
+            def con = ds.getConnection()
+            log.debug("connected to $con")
+            session.setAttribute('environment', env)
+            session.setAttribute('repositoryName', env.dbName)            
+            log.debug('Environment change complete.')
+        } catch (e) {
+            log.debug("error: ", e)
+            throw new RuntimeException("Unable to connect to database", e)
+        }
     }
 
     private def getDataSourceForEnv(env) {
