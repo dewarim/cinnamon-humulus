@@ -3,9 +3,9 @@ class HumulusGrailsPlugin {
     def groupId = 'cinnamon'
     
     // the plugin version
-    def version = "0.0.3"
+    def version = "0.1.0"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "2.0 > *"
+    def grailsVersion = "2.1 > *"
     // the other plugins this plugin depends on
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
@@ -15,7 +15,6 @@ class HumulusGrailsPlugin {
     // use binary packaging so the plugin can be placed in the lib folder where it should be available for resources.groovy
     def packaging = "binary"
     
-    // TODO Fill in these fields
     def title = "Cinnamon Humulus Plugin" // Headline display name of the plugin
     def author = "Ingo Wiarda"
     def authorEmail = "ingo.wiarda@horner-project.eu"
