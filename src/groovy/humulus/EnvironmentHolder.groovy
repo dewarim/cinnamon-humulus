@@ -2,9 +2,9 @@ package humulus
 
 public class EnvironmentHolder {
 
-    private static final ThreadLocal contextHolder  = new ThreadLocal();
+    private static final ThreadLocal contextHolder = new ThreadLocal();
 
-        static void setEnvironment(Map environment) {
+    static void setEnvironment(Map environment) {
         contextHolder.set(environment);
     }
 
