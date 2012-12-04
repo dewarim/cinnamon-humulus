@@ -1,6 +1,6 @@
 #Grails plugin: cinnamon-humulus
 
-This plugin contains the classes for switching between databases and checking login attems against the current repository.
+This plugin contains the classes for switching between databases and checking login attempts against the current repository.
 
 Note: this repository contains code for an new release (Cinnamon 3) which will be heavily refactored since we are
 trying to convert from a split application (Java Server with custom Servlet code, accessed by desktop and Grails
