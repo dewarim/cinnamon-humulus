@@ -21,7 +21,9 @@ import javax.servlet.http.HttpServletResponse
  * the user object will not be found.
  */
 class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter implements InitializingBean {
-
+    
+    def grailsApplication
+    
     RepositoryLoginFilter() {
         this.postOnly = false
     }
@@ -32,7 +34,8 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
     }
 
     Logger log = LoggerFactory.getLogger(this.class)
-
+    static final String DEFAULT_FILTER_REGEX = '(?:plugins/[-_.a-zA-Z0-9]+/)?(?:images|css|js)/.*(?:css|js|png|jpe?g|gif)$'
+    
     Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         return null
     }
@@ -43,7 +46,9 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
         def httpServletRequest = (HttpServletRequest) request
         def uri = httpServletRequest.getRequestURI()
         def contextPath = httpServletRequest.getContextPath()
-        if (uri =~ /${contextPath}\/(?:plugins\/[-_.a-zA-Z0-9]+\/)?(?:images|css|js)\/.*(?:css|js|png|jpe?g|gif)$/) {
+        
+        def filterRegex = grailsApplication.config.humulus.urlFilterRegex ?: DEFAULT_FILTER_REGEX            
+        if (uri =~ /${contextPath}\/${filterRegex}/) {
             log.debug("do not filter $uri")
             chain.doFilter(request, response)
             return
