@@ -1,4 +1,4 @@
-class HumulusGrailsPlugin {
+class CinnamonHumulusGrailsPlugin {
 
     def groupId = 'cinnamon'
     
