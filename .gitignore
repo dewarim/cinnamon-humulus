@@ -1,0 +1,10 @@
+*.idea/**
+*.svn*
+*.settings*
+*.class
+target/**
+*~
+.svn*
+.svn
+.classpath
+*.iml
