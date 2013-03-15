@@ -80,13 +80,15 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
 
         }
         else {
-            def headerTicketEnvironment
+            def currentEnv
             if ( httpServletRequest.getHeader('ticket')){
                 def repository = httpServletRequest.getHeader('ticket')?.split('@')[1]
-                headerTicketEnvironment = Environment.list().find{it.dbName == repository}
+                currentEnv = Environment.list().find{it.dbName == repository}
                 log.debug("Found ticket in request header for repository $repository")
             }
-            def currentEnv = session.getAttribute('environment') ?: headerTicketEnvironment
+            else{
+                currentEnv = session.getAttribute('environment')
+            }
             if (currentEnv) {
                 /*
                  * we got a session, so we initialize the ThreadLocal EnvironmentHolder with
@@ -102,7 +104,7 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
                 EnvironmentHolder.setEnvironment(currentEnv)
                 def ds = getDataSourceForEnv(null)
                 def con = ds.getConnection() // necessary to make sure we _can_ connect.
-                log.debug("connected to: ${con}")
+                log.debug("connected to: ${con.dump()}")
 
             }
 //            else if (request.getParameter('ticket')){
