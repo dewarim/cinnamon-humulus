@@ -80,7 +80,14 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
 
         }
         else {
-            if (session.getAttribute('environment')) {
+            def headerTicketEnvironment
+            if ( httpServletRequest.getHeader('ticket')){
+                def repository = httpServletRequest.getHeader('ticket')?.split('@')[1]
+                headerTicketEnvironment = Environment.list().find{it.dbName == repository}
+                log.debug("Found ticket in request header for repository $repository")
+            }
+            def currentEnv = session.getAttribute('environment') ?: headerTicketEnvironment
+            if (currentEnv) {
                 /*
                  * we got a session, so we initialize the ThreadLocal EnvironmentHolder with
                  * our per-session-environment.
@@ -92,7 +99,7 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
                   which are not very useful to close.
                   */
 
-                EnvironmentHolder.setEnvironment(session.getAttribute('environment'))
+                EnvironmentHolder.setEnvironment(currentEnv)
                 def ds = getDataSourceForEnv(null)
                 def con = ds.getConnection() // necessary to make sure we _can_ connect.
                 log.debug("connected to: ${con}")
@@ -110,7 +117,7 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
                  * We will try to establish a database connection anyway, since the login logo
                  * (and perhaps other resources) may be loaded without a valid user account / session.
                  */
-                log.warn("invalid EnvironmentHolder: " + EnvironmentHolder.getEnvironment()?.id)
+                log.warn("EnvironmentHolder without session / param: " + EnvironmentHolder.getEnvironment()?.id)
                 def ds = getDataSourceForEnv(null)
                 log.debug("will use first repository in list.")
                 // TODO: try to determine environment from request.host attribute, if possible.
