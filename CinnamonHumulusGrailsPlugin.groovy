@@ -12,7 +12,7 @@ class CinnamonHumulusGrailsPlugin {
     
     def title = "Cinnamon Humulus Plugin" // Headline display name of the plugin
     def author = "Ingo Wiarda"
-    def authorEmail = "ingo.wiarda@horner-project.eu"
+    def authorEmail = "ingo.wiarda@texolution.eu"
     def description = '''\
 SwitchableDataSource and Security related classes required by the Cinnamon CMS plugin and applications based thereon. 
 '''
