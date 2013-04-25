@@ -8,3 +8,4 @@ target/**
 .svn
 .classpath
 *.iml
+plugin.xml
