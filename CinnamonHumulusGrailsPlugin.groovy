@@ -1,8 +1,6 @@
 class CinnamonHumulusGrailsPlugin {
 
-    def groupId = 'cinnamon'
-    
-    def version = "0.2.3"
+    def version = "0.2.5"
     def grailsVersion = "2.1 > *"
     def dependsOn = [:]
     def pluginExcludes = [
@@ -10,30 +8,23 @@ class CinnamonHumulusGrailsPlugin {
     ]
     def packaging = "binary"
     
-    def title = "Cinnamon Humulus Plugin" // Headline display name of the plugin
+    def title = "Cinnamon Humulus Plugin" 
     def author = "Ingo Wiarda"
     def authorEmail = "ingo.wiarda@texolution.eu"
     def description = '''\
 SwitchableDataSource and Security related classes required by the Cinnamon CMS plugin and applications based thereon. 
 '''
 
-    // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/humulus"
-
-    // License: one of 'APACHE', 'GPL2', 'GPL3'
+    def documentation = "http://cinnamon-cms.com"
     def license = "LGPL-2.1"
-    
-    // Details of company behind the plugin (if there is one)
-//    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
+    def organization = [ name: "Texolution GmbH", url: "http://texolution.eu/" ]
 
-    // Any additional developers beyond the author specified above.
-//    def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
+    def developers = [ 
+        [name:'Ingo Wiarda', email: "ingo.wiarda@texolution.eu"]
+    ]
 
-    // Location of the plugin's issue tracker.
-//    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
-
-    // Online location of the plugin's browseable source code.
-//    def scm = [ url: "http://svn.grails-plugins.codehaus.org/browse/grails-plugins/" ]
+    def issueManagement = [ system: "Github", url: "https://github.com/dewarim/cinnamon-humulus" ]
+    def scm = [ url: "https://github.com/dewarim/cinnamon-humulus/" ]
 
     def doWithWebDescriptor = { xml ->
     }
