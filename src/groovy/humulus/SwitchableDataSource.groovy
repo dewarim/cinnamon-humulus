@@ -19,6 +19,11 @@ class SwitchableDataSource extends AbstractRoutingDataSource{
         def env = EnvironmentHolder.getEnvironment()
         if (!env) {
             log.debug("empty EnvironmentHolder - using first environment in list.")
+            if(log.debugEnabled){
+                def exception = new RuntimeException("empty environment")
+                log.debug("this was called by: ",exception)
+            }
+            
             /*
             In a perfect world, this would not be needed, as the very first call to
             getDataSource would happen _after_ the EnvironmentHolder has been initialized.
