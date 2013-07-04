@@ -10,17 +10,17 @@ class CinnamonHumulusGrailsPlugin {
     
     def title = "Cinnamon Humulus Plugin" 
     def author = "Ingo Wiarda"
-    def authorEmail = "ingo.wiarda@texolution.eu"
+    def authorEmail = "ingo_wiarda@dewarim.de"
     def description = '''\
 SwitchableDataSource and Security related classes required by the Cinnamon CMS plugin and applications based thereon. 
 '''
 
     def documentation = "http://cinnamon-cms.com"
     def license = "LGPL-2.1"
-    def organization = [ name: "Texolution GmbH", url: "http://texolution.eu/" ]
+//    def organization = [ name: "Texolution GmbH", url: "http://texolution.eu/" ]
 
     def developers = [ 
-        [name:'Ingo Wiarda', email: "ingo.wiarda@texolution.eu"]
+        [name:'Ingo Wiarda', email: "ingo_wiarda@dewarim.de"]
     ]
 
     def issueManagement = [ system: "Github", url: "https://github.com/dewarim/cinnamon-humulus" ]
