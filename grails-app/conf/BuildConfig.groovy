@@ -30,7 +30,6 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
         runtime 'org.mindrot:jbcrypt:0.3m'
-        // runtime 'mysql:mysql-connector-java:5.1.5'
     }
 
     plugins {

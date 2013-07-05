@@ -1,6 +1,6 @@
 class CinnamonHumulusGrailsPlugin {
 
-    def version = "0.2.6.1"
+    def version = "0.2.6.2"
     def grailsVersion = "2.1 > *"
     def dependsOn = [:]
     def pluginExcludes = [
@@ -17,7 +17,6 @@ SwitchableDataSource and Security related classes required by the Cinnamon CMS p
 
     def documentation = "http://cinnamon-cms.com"
     def license = "LGPL-2.1"
-//    def organization = [ name: "Texolution GmbH", url: "http://texolution.eu/" ]
 
     def developers = [ 
         [name:'Ingo Wiarda', email: "ingo_wiarda@dewarim.de"]
