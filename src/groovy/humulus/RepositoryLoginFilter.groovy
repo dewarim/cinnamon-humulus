@@ -60,10 +60,6 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
         def session = httpServletRequest.session
         log.warn("EnvironmentHolder: " + EnvironmentHolder.getEnvironment()?.id)
 
-//        params.each { k, v ->
-//            log.debug("$k :: ${params.get(v)}")
-//        }
-
         if (params.environment) {
 //            log.debug("params.environment: ${params.environment}")
             def id = Integer.parseInt(params.environment[0])
@@ -76,8 +72,7 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
             //test connection
             EnvironmentHolder.setEnvironment(env)
             def ds = getDataSourceForEnv(null)
-            establishConnection(ds, session, env)
-
+            establishConnection(ds, session, env)                        
         }
         else {
             def currentEnv
@@ -104,14 +99,9 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
                 EnvironmentHolder.setEnvironment(currentEnv)
                 def ds = getDataSourceForEnv(null)
                 def con = ds.getConnection() // necessary to make sure we _can_ connect.
-                log.debug("connected to: ${con.dump()}")
+                log.debug("connected to: ${con.dump()}")                
 
             }
-//            else if (request.getParameter('ticket')){
-//                def ticket = request.getParameter('ticket')
-//                log.debug("ticket: $ticket")
-//                Session cinnamonSession  
-//            }
             else {
                 /*
                  * We have not got a session, which means that our EnvironmentHolder is most
