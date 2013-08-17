@@ -1,6 +1,6 @@
 class CinnamonHumulusGrailsPlugin {
 
-    def version = "0.2.6.2"
+    def version = "0.2.6.3"
     def grailsVersion = "2.1 > *"
     def dependsOn = [:]
     def pluginExcludes = [
