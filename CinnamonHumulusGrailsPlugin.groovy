@@ -1,7 +1,7 @@
 class CinnamonHumulusGrailsPlugin {
 
-    def version = "0.2.6.3"
-    def grailsVersion = "2.1 > *"
+    def version = "0.2.7.3"
+    def grailsVersion = "2.4 > *"
     def dependsOn = [:]
     def pluginExcludes = [
             "grails-app/views/error.gsp"
