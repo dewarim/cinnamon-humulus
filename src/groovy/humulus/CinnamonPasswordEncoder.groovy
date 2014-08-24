@@ -16,7 +16,7 @@ class CinnamonPasswordEncoder implements PasswordEncoder{
         // existing system.
 
         def env = EnvironmentHolder.getEnvironment()
-		if( env.get('encryptPasswords')?.equals("false")){
+		if( env?.get('encryptPasswords')?.equals("false")){
           return rawPass
         }
         else{
