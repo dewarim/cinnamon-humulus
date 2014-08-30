@@ -34,7 +34,8 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
     }
 
     Logger log = LoggerFactory.getLogger(this.class)
-    static final String DEFAULT_FILTER_REGEX = '(?:plugins/[-_.a-zA-Z0-9]+/)?(?:images|css|js)/.*(?:css|js|png|jpe?g|gif)$'
+//    static final String DEFAULT_FILTER_REGEX = '(?:plugins/[-_.a-zA-Z0-9]+/|assets/)?(?:images|css|js)?/.*(?:css|js|png|jpe?g|gif)'
+    static final String DEFAULT_FILTER_REGEX = 'assets/.*'
     
     Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         return null
@@ -47,7 +48,8 @@ class RepositoryLoginFilter extends UsernamePasswordAuthenticationFilter impleme
         def uri = httpServletRequest.getRequestURI()
         def contextPath = httpServletRequest.getContextPath()
         
-        def filterRegex = grailsApplication.config.humulus.urlFilterRegex ?: DEFAULT_FILTER_REGEX            
+        def filterRegex = grailsApplication.config.humulus.urlFilterRegex ?: DEFAULT_FILTER_REGEX
+        log.debug("filterRegex: $contextPath/$filterRegex")
         if (uri =~ /${contextPath}\/${filterRegex}/) {
             log.debug("do not filter $uri")
             chain.doFilter(request, response)
