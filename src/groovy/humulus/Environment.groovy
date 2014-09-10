@@ -57,7 +57,7 @@ class Environment {
         }
     }
 
-    static list() {
+    static List<Map> list() {
         return environments
     }
 
