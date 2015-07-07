@@ -1,6 +1,6 @@
 class CinnamonHumulusGrailsPlugin {
 
-    def version = "0.2.7.7"
+    def version = "0.3"
     def grailsVersion = "2.4 > *"
     def dependsOn = [:]
     def pluginExcludes = [
@@ -12,7 +12,7 @@ class CinnamonHumulusGrailsPlugin {
     def author = "Ingo Wiarda"
     def authorEmail = "ingo_wiarda@dewarim.de"
     def description = '''\
-SwitchableDataSource and Security related classes required by the Cinnamon CMS plugin and applications based thereon. 
+Security related classes required by the Cinnamon CMS plugin and applications based thereon. 
 '''
 
     def documentation = "http://cinnamon-cms.com"
