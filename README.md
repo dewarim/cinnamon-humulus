@@ -1,13 +1,9 @@
 #Grails plugin: cinnamon-humulus
 
+Plugin for Cinnamon 3 CMS server with version less than 3.2
+
 This plugin contains the classes for switching between databases and checking login attempts against the current repository.
-
-Note: this repository contains code for an new release (Cinnamon 3) which will be heavily refactored since we are
-trying to convert from a split application (Java Server with custom Servlet code, accessed by desktop and Grails
-applications for the webclient and the administration interface) to a more unified server using the Grails framework.
-
-The Cinnamon CMS version 2 is stable and in production use, the project home is: http://sourceforge.net/projects/cinnamon
-The development version 3 here is still in its early stages and subject to change.
+It is now deprecated as the code has been moved to module cinnamon-db.
 
 License is LGPL 2.1 or later - if you require other license conditions, please contact us.
 
